@@ -256,7 +256,7 @@ func newAirflowStartCmd(astroCoreClient astrocore.CoreClient) *cobra.Command {
 	cmd.Flags().StringVarP(&customImageName, "image-name", "i", "", "Name of a custom built image to start airflow with")
 	cmd.Flags().StringVarP(&settingsFile, "settings-file", "s", "airflow_settings.yaml", "Settings file from which to import airflow objects")
 	cmd.Flags().BoolVarP(&noBrowser, "no-browser", "n", false, "Don't bring up the browser once the Webserver is healthy")
-	cmd.Flags().DurationVar(&waitTime, "wait", defaultWaitTime, "Duration to wait for webserver to get healthy. The default is 5 minutes. Use --wait 2m to wait for 2 minutes.")
+	cmd.Flags().DurationVar(&waitTime, "wait", defaultWaitTime, "Duration to wait for webserver to get healthy. Use --wait 2m to wait for 2 minutes.")
 	cmd.Flags().StringVarP(&composeFile, "compose-file", "", "", "Location of a custom compose file to use for starting Airflow")
 	cmd.Flags().StringSliceVar(&buildSecrets, "build-secrets", []string{}, "Mimics docker build --secret flag. See https://docs.docker.com/build/building/secrets/ for more information. Example input id=mysecret,src=secrets.txt")
 	if !config.CFG.DisableEnvObjects.GetBool() {
@@ -341,7 +341,7 @@ func newAirflowRestartCmd(astroCoreClient astrocore.CoreClient) *cobra.Command {
 			return airflowRestart(cmd, args, astroCoreClient)
 		},
 	}
-	cmd.Flags().DurationVar(&waitTime, "wait", defaultWaitTime, "Duration to wait for webserver to get healthy. The default is 5 minutes. Use --wait 2m to wait for 2 minutes.")
+	cmd.Flags().DurationVar(&waitTime, "wait", defaultWaitTime, "Duration to wait for webserver to get healthy. Use --wait 2m to wait for 2 minutes.")
 	cmd.Flags().StringVarP(&envFile, "env", "e", ".env", "Location of file containing environment variables")
 	cmd.Flags().BoolVarP(&noCache, "no-cache", "", false, "Do not use cache when building container image")
 	cmd.Flags().StringVarP(&customImageName, "image-name", "i", "", "Name of a custom built image to restart airflow with")
